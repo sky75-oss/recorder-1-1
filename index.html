@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>리코더 수업 자료실 · 오션중 1학년</title>
+<style>
+  :root{
+    --bg:#fbf7f0; --card:#ffffff; --ink:#2c2a26; --sub:#6b6459;
+    --line:#eadfce; --accent:#e08a3c; --accent2:#c65b2e;
+    --blue:#5a8fc7; --green:#6fa287; --purple:#8a76b8; --gold:#f2c14e;
+    --shadow:0 4px 18px rgba(120,90,40,.09);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Malgun Gothic","맑은 고딕",-apple-system,"Apple SD Gothic Neo",Segoe UI,sans-serif;
+    line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent2)}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+
+  /* Hero */
+  header.hero{background:
+      radial-gradient(1200px 380px at 80% -10%, #fbe3c4 0%, transparent 60%),
+      linear-gradient(160deg,#fff5e8 0%, #fdf1e3 55%, #fbf7f0 100%);
+    border-bottom:1px solid var(--line);padding:64px 0 52px;position:relative;overflow:hidden}
+  .hero .kicker{display:inline-block;font-size:.8rem;letter-spacing:.18em;font-weight:700;
+    color:var(--accent2);background:#fff;border:1px solid var(--line);padding:6px 14px;border-radius:100px}
+  .hero h1{font-size:2.5rem;margin:.5em 0 .2em;letter-spacing:-.02em;line-height:1.2}
+  .hero p.lead{font-size:1.08rem;color:var(--sub);max-width:640px;margin:.2em 0 0}
+  .hero .note-emoji{font-size:2.4rem;position:absolute;opacity:.25}
+  .n1{top:34px;right:8%}.n2{bottom:28px;right:22%;font-size:1.6rem}.n3{top:120px;right:30%;font-size:1.2rem}
+  .stats{display:flex;flex-wrap:wrap;gap:26px;margin-top:28px}
+  .stats div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 20px;box-shadow:var(--shadow)}
+  .stats b{display:block;font-size:1.5rem;color:var(--accent2)}
+  .stats span{font-size:.85rem;color:var(--sub)}
+
+  /* Sections */
+  section{padding:52px 0}
+  section:nth-of-type(even){background:linear-gradient(#fff,#fffaf2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  h2.sec{font-size:1.55rem;margin:0 0 6px;display:flex;align-items:center;gap:12px}
+  h2.sec .dot{width:12px;height:12px;border-radius:50%;background:var(--accent);flex:0 0 auto}
+  .sec-sub{color:var(--sub);margin:0 0 26px;font-size:.98rem}
+
+  .grid{display:grid;gap:18px}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:720px){.g2,.g3{grid-template-columns:1fr}.hero h1{font-size:1.9rem}}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow)}
+  .card h3{margin:0 0 6px;font-size:1.12rem}
+  .card .meta{font-size:.82rem;color:var(--sub);margin:0 0 10px}
+  .tag{display:inline-block;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:100px;margin:0 4px 4px 0}
+  .t-pdf{background:#fdeae0;color:#c65b2e}
+  .t-audio{background:#e6f0e9;color:#3f7a5c}
+  .t-video{background:#e7eef7;color:#3a6aa0}
+  .t-ppt{background:#f1ebf8;color:#6b52a0}
+  .t-doc{background:#fef4d9;color:#a2801e}
+
+  audio,video{width:100%;margin-top:10px;border-radius:8px}
+  video{background:#000}
+
+  /* media player card */
+  .player{display:flex;flex-direction:column;gap:4px}
+
+  /* Curriculum timeline */
+  .timeline{border-left:3px solid var(--line);margin-left:8px;padding-left:26px;display:flex;flex-direction:column;gap:22px}
+  .step{position:relative}
+  .step::before{content:"";position:absolute;left:-35px;top:4px;width:15px;height:15px;border-radius:50%;
+    background:var(--accent);border:3px solid #fff;box-shadow:0 0 0 2px var(--line)}
+  .step h4{margin:0 0 2px;font-size:1.06rem}
+  .step .lv{font-size:.75rem;font-weight:700;color:var(--accent2);letter-spacing:.05em}
+  .step p{margin:.2em 0 0;color:var(--sub);font-size:.95rem}
+  .chips{margin-top:8px}
+  .chip{display:inline-block;background:#fff6ec;border:1px solid var(--line);color:#7a5a2e;
+    font-size:.76rem;padding:3px 9px;border-radius:8px;margin:0 5px 5px 0}
+
+  /* Technique boxes */
+  .tech{border-left:4px solid var(--purple);background:#faf7fd}
+  .tech.breath{border-color:var(--blue);background:#f5f9fd}
+  .tech h3 .ico{margin-right:6px}
+  .steps-inline{list-style:none;padding:0;margin:10px 0 0;counter-reset:s}
+  .steps-inline li{position:relative;padding:6px 0 6px 34px;border-top:1px dashed var(--line);font-size:.94rem}
+  .steps-inline li:first-child{border-top:0}
+  .steps-inline li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:6px;
+    width:23px;height:23px;border-radius:50%;background:var(--purple);color:#fff;font-size:.78rem;
+    display:flex;align-items:center;justify-content:center;font-weight:700}
+  .tech.breath .steps-inline li::before{background:var(--blue)}
+
+  /* Fingering table */
+  table{width:100%;border-collapse:collapse;font-size:.9rem;background:#fff;border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+  th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line)}
+  th{background:#f7ecdd;color:#6b4f28;font-size:.82rem;letter-spacing:.03em}
+  tr:last-child td{border-bottom:0}
+  td.note{font-weight:700;color:var(--accent2);white-space:nowrap}
+  .lvl-b{color:#3f7a5c;font-weight:700}
+  .lvl-i{color:#a2801e;font-weight:700}
+  .lvl-a{color:#c65b2e;font-weight:700}
+  .scroll{overflow-x:auto}
+
+  .callout{background:#fff8ec;border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin-top:18px;font-size:.92rem;color:var(--sub)}
+  .callout b{color:var(--ink)}
+
+  /* Fingering diagrams */
+  .legend{display:flex;gap:20px;flex-wrap:wrap;font-size:.86rem;color:var(--sub);margin:0 0 18px;align-items:center}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .fing{font-family:"Consolas","D2Coding",monospace;font-size:1.15rem;letter-spacing:3px;white-space:nowrap}
+  .fing .c{color:#2c2a26}
+  .fing .o{color:#d0bb95}
+  .fing .h{color:var(--accent);font-weight:700}
+  .fing .sep{color:#e0cfa9;margin:0 5px}
+  .ftable td.note{font-size:1rem;font-weight:700;color:var(--accent2);white-space:nowrap}
+  .ftable td .roman{color:var(--sub);font-weight:400;font-size:.8rem;margin-left:4px}
+  .badge{display:inline-block;font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:6px;white-space:nowrap}
+  .b-thumb{background:#fde7d6;color:#c65b2e}
+  .b-ger{background:#e9eef6;color:#3a6aa0}
+  .b-ppt{background:#f1ebf8;color:#6b52a0}
+  .viewer{width:100%;height:560px;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);background:#fff;margin-top:8px}
+  @media(max-width:720px){.viewer{height:400px}.fing{font-size:1rem;letter-spacing:2px}}
+
+  footer{padding:40px 0 60px;color:var(--sub);font-size:.85rem;text-align:center}
+  footer .hr{height:1px;background:var(--line);margin:0 0 24px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <span class="note-emoji n1">🎵</span>
+  <span class="note-emoji n2">🎶</span>
+  <span class="note-emoji n3">♪</span>
+  <div class="wrap">
+    <span class="kicker">RECORDER · 오션중학교 1학년 음악</span>
+    <h1>리코더 수업 자료실</h1>
+    <p class="lead">리코더의 역사부터 운지법·텅잉·서밍, 그리고 연주곡 반주 음원까지 —
+       한 학기 리코더 수업을 위한 학습 자료를 한 곳에 정리했습니다.</p>
+    <div class="stats">
+      <div><b>9</b><span>자료 파일</span></div>
+      <div><b>97</b><span>PPT 학습 슬라이드</span></div>
+      <div><b>4</b><span>연주·반주 음원</span></div>
+      <div><b>5+</b><span>수록·연습곡</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- 감상 · 반주 음원 -->
+<section>
+  <div class="wrap">
+    <h2 class="sec"><span class="dot"></span>감상 · 반주 음원</h2>
+    <p class="sec-sub">아래 플레이어로 바로 재생됩니다. (HTML 파일과 음원이 같은 폴더에 있어야 합니다)</p>
+    <div class="grid g2">
+
+      <div class="card player">
+        <h3>🎬 아일랜드 여인 (IRLANDAISE) · 반주 MR 영상</h3>
+        <p class="meta">Claude Bolling / arr. Melodyroom · 반주 영상</p>
+        <span class="tag t-video">MP4 영상</span>
+        <video controls preload="metadata" src="new (영상)아일랜드 여인 반주음악 MR.mp4"></video>
+      </div>
+
+      <div class="card player">
+        <h3>🎧 아일랜드 여인 · 반주 MR 음원</h3>
+        <p class="meta">리코더 연주용 반주 (MR)</p>
+        <span class="tag t-audio">MP3 음원</span>
+        <audio controls preload="metadata" src="new 아일랜드 여인 반주음악 MR.mp3"></audio>
+      </div>
+
+      <div class="card player">
+        <h3>🎼 할아버지의 11개월 · 리코더 연주</h3>
+        <p class="meta">멜로디(리코더) 시범 연주</p>
+        <span class="tag t-audio">MP3 음원</span>
+        <audio controls preload="metadata" src="Track083_할아버지의 11개월_리코더.mp3"></audio>
+      </div>
+
+      <div class="card player">
+        <h3>🎹 할아버지의 11개월 · 반주</h3>
+        <p class="meta">연주 연습용 반주 (MR)</p>
+        <span class="tag t-audio">MP3 음원</span>
+        <audio controls preload="metadata" src="Track084_할아버지의 11개월_반주.mp3"></audio>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 자료 목록 -->
+<section>
+  <div class="wrap">
+    <h2 class="sec"><span class="dot"></span>수록 자료</h2>
+    <p class="sec-sub">악보·수업 자료 원본 파일입니다. 클릭하면 파일이 열립니다.</p>
+    <div class="grid g3">
+      <div class="card">
+        <span class="tag t-ppt">PPTX · 97장</span>
+        <h3>1학년 리코더 (오션중)</h3>
+        <p class="meta">리코더 기초 전 과정 수업 슬라이드</p>
+        <a href="1. 1학년 리코더(오션중).pptx">▶ PPT 열기</a> · <a href="1. 1학년 리코더(오션중).pdf">PDF</a>
+      </div>
+      <div class="card">
+        <span class="tag t-pdf">PDF</span>
+        <h3>IRLANDAISE (총보)</h3>
+        <p class="meta">소프라노 리코더 2 + 피아노 · 110마디</p>
+        <a href="Irlandaise(Piano).pdf">▶ 피아노 악보 열기</a>
+      </div>
+      <div class="card">
+        <span class="tag t-doc">HWPX</span>
+        <h3>아일랜드 여인 (일랑데즈)</h3>
+        <p class="meta">가락 악보 · 한글 문서</p>
+        <a href="Irlandais일랑데즈  아일랜드 여인  .hwpx">▶ 한글 악보 열기</a>
+      </div>
+    </div>
+
+    <h3 style="margin:34px 0 4px;font-size:1.12rem">📽️ 수업 슬라이드 바로 보기 (97장)</h3>
+    <p class="sec-sub" style="margin-bottom:10px">아래에서 바로 넘겨볼 수 있습니다. (파워포인트 원본은 위 <b>PPT 열기</b>에서 편집용으로 여세요)</p>
+    <iframe class="viewer" src="1. 1학년 리코더(오션중).pdf#view=FitH" title="리코더 수업 슬라이드"></iframe>
+  </div>
+</section>
+
+<!-- 커리큘럼 -->
+<section>
+  <div class="wrap">
+    <h2 class="sec"><span class="dot"></span>수업 커리큘럼 분석</h2>
+    <p class="sec-sub">PPT 97장을 단계별로 재구성했습니다. 쉬운 음 → 임시표 → 높은음 → 반음(#) 순으로 음역을 넓혀 갑니다.</p>
+    <div class="timeline">
+
+      <div class="step">
+        <span class="lv">1차시 · 도입</span>
+        <h4>리코더와 만나기</h4>
+        <p>리코더의 역사(중세~바로크, 20세기 부흥 운동), 종류(소프라니노·소프라노·알토·테너·베이스·콘트라베이스), 소프라노 리코더의 쓰임을 배웁니다.</p>
+        <div class="chips"><span class="chip">역사</span><span class="chip">리코더족 10여 종</span><span class="chip">소리 맞추기 퀴즈</span></div>
+      </div>
+
+      <div class="step">
+        <span class="lv">2차시 · 기초 주법</span>
+        <h4>소리 내는 법 · 운지법 (도~시)</h4>
+        <p>바른 자세와 복식 호흡, 텅잉(두-우-웃), 그리고 기본 운지법 도·레·미·파·솔·라·시를 익힙니다. '도레미송'으로 연습합니다.</p>
+        <div class="chips"><span class="chip">호흡 연습</span><span class="chip">텅잉</span><span class="chip">도~시</span><span class="chip">🎵 도레미송</span></div>
+      </div>
+
+      <div class="step">
+        <span class="lv">3차시 · 임시표</span>
+        <h4>시♭ 운지법 · 조표와 임시표</h4>
+        <p>바장조(F Major) 조표를 이해하고, 임시표의 규칙(같은 마디 안에서만 유효)을 배웁니다. 연주곡 '언제나 몇 번이라도'로 시♭을 연습합니다.</p>
+        <div class="chips"><span class="chip">바장조</span><span class="chip">시♭</span><span class="chip">파~높은 도</span><span class="chip">🎵 언제나 몇 번이라도</span></div>
+      </div>
+
+      <div class="step">
+        <span class="lv">4차시 · 확장</span>
+        <h4>높은 도·레 · 더블 텅잉</h4>
+        <p>높은 도·레 운지를 더하고, 빠른 프레이즈를 위한 더블 텅잉(두-두-두-두)을 연습합니다. '언제나 몇 번이라도'를 반주에 맞춰 완주합니다.</p>
+        <div class="chips"><span class="chip">높은 도·레</span><span class="chip">더블 텅잉</span><span class="chip">반주 맞춰 연주</span></div>
+      </div>
+
+      <div class="step">
+        <span class="lv">5차시 · 서밍</span>
+        <h4>높은 미·파·솔 · 서밍(Thumbing)</h4>
+        <p>엄지 구멍을 살짝(약 10%) 여는 서밍 기법으로 높은음을 냅니다. '학교 가는 길'을 감상하고 느린 템포로 연습합니다.</p>
+        <div class="chips"><span class="chip">서밍</span><span class="chip">높은 미·파·솔</span><span class="chip">🎵 학교 가는 길</span></div>
+      </div>
+
+      <div class="step">
+        <span class="lv">6~8차시 · 반음</span>
+        <h4>파#·솔#·도# · 높은 반음</h4>
+        <p>독일식(G)/바로크식(B) 리코더의 운지 차이에 주의하며 파#·솔#·도#, 이어서 높은 도#·파#·레#까지 확장합니다. 이음줄·붙임줄 처리도 함께 익힙니다.</p>
+        <div class="chips"><span class="chip">파#·솔#·도#</span><span class="chip">독일식/바로크식</span><span class="chip">이음줄·붙임줄</span><span class="chip">🎵 과제곡 (IRLANDAISE)</span></div>
+      </div>
+
+    </div>
+    <div class="callout">
+      <b>과제 제출:</b> 과제곡(아일랜드 여인) 마디를 나누어 연습한 뒤 동영상을 촬영해 '1:1 과제 제출방'에 제출하는 방식으로 진행됩니다.
+    </div>
+  </div>
+</section>
+
+<!-- 주법 가이드 -->
+<section>
+  <div class="wrap">
+    <h2 class="sec"><span class="dot"></span>핵심 주법 가이드</h2>
+    <p class="sec-sub">수업에서 반복 강조되는 두 가지 기본기입니다.</p>
+    <div class="grid g2">
+
+      <div class="card tech breath">
+        <h3><span class="ico">🫁</span>복식 호흡</h3>
+        <p class="meta">고른 소리와 긴 프레이즈의 바탕</p>
+        <ol class="steps-inline">
+          <li>허리를 곧게 편 편안한 자세를 유지합니다.</li>
+          <li>숨을 천천히 깊게 들이마십니다.</li>
+          <li>5초간 멈춥니다.</li>
+          <li>배의 힘으로 숨을 천천히 고르게 내뱉습니다.</li>
+        </ol>
+      </div>
+
+      <div class="card tech">
+        <h3><span class="ico">👅</span>텅잉 (Tonguing)</h3>
+        <p class="meta">음을 구분하고 끊어 주는 혀의 움직임 · 입모양 "두-우-웃"</p>
+        <ol class="steps-inline">
+          <li>소리 내기 직전 혀끝을 윗니 뒤쪽에 가볍게 댑니다.</li>
+          <li>호흡을 내쉴 때 혀를 앞으로 밀며 공기를 내보냅니다.</li>
+          <li>음을 끊을 때 혀끝을 다시 윗니 뒤쪽에 댑니다.</li>
+        </ol>
+        <div class="callout" style="margin-top:14px">
+          낮은음은 <b>'도'</b>, 중간음은 <b>'두'</b>, 높은음은 <b>'드'</b> 입모양으로 —
+          낮은음은 여리게, 높은음은 세게 붑니다.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 운지법 로드맵 -->
+<section>
+  <div class="wrap">
+    <h2 class="sec"><span class="dot"></span>운지법 학습 로드맵</h2>
+    <p class="sec-sub">수업에서 다루는 음을 난이도 순으로 정리했습니다. 정확한 구멍 운지도는 PPT의 각 '소리내기' 슬라이드를 참고하세요.</p>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>단계</th><th>음</th><th>학습 포인트</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="lvl-b">기초</td><td class="note">도 · 레 · 미 · 파 · 솔 · 라 · 시</td><td>기본 7음. '도'는 정확한 음을 내기 어려우므로 호흡을 부드럽게 하여 세심히 연습.</td></tr>
+          <tr><td class="lvl-b">기초</td><td class="note">높은 도 · 높은 레</td><td>낮은 음역을 채운 뒤 위로 확장. 텅잉으로 또렷하게.</td></tr>
+          <tr><td class="lvl-i">임시표</td><td class="note">시♭</td><td>바장조 조표의 핵심음. '언제나 몇 번이라도'에서 반복 등장.</td></tr>
+          <tr><td class="lvl-i">서밍</td><td class="note">높은 미 · 높은 파 · 높은 솔</td><td>엄지를 약 10%만 여는 <b>서밍(Thumbing)</b>으로 옥타브 위 소리를 냄.</td></tr>
+          <tr><td class="lvl-a">반음</td><td class="note">파# · 솔# · 도#</td><td>이명동음(♯/♭) 이해. <b>독일식·바로크식</b> 운지 차이에 주의(특히 파#).</td></tr>
+          <tr><td class="lvl-a">반음</td><td class="note">높은 도# · 높은 파# · 높은 레#</td><td>서밍 + 반음 운지 결합. 과제곡의 후반부 프레이즈에서 사용.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <b>독일식(G) vs 바로크식(B):</b> 리코더 머리 부분에 <b>G</b> 또는 <b>B</b>가 표기됩니다.
+      특히 '파', '높은 파#' 운지가 서로 다르므로, 자신의 리코더 표기를 먼저 확인하세요.
+    </div>
+  </div>
+</section>
+
+<!-- 운지 구멍 도해 -->
+<section>
+  <div class="wrap">
+    <h2 class="sec"><span class="dot"></span>음별 운지 구멍 도해</h2>
+    <p class="sec-sub">표준 <b>바로크식(B)</b> 소프라노 리코더 기준입니다. 도해 순서는 <b>엄지(뒤)</b> ｜ 왼손 <b>1·2·3</b> ｜ 오른손 <b>4·5·6·7</b> 입니다.</p>
+
+    <div class="legend">
+      <span><span class="fing"><span class="c">●</span></span> 막음(닫기)</span>
+      <span><span class="fing"><span class="o">○</span></span> 열음(떼기)</span>
+      <span><span class="fing"><span class="h">◐</span></span> 반만 열기 · 서밍(엄지 살짝)</span>
+      <span><span class="badge b-ger">G</span> 독일식은 다름</span>
+      <span><span class="badge b-ppt">PPT</span> 슬라이드 도해 확인 권장</span>
+    </div>
+
+    <div class="scroll">
+      <table class="ftable">
+        <thead>
+          <tr><th>음 (계이름)</th><th>엄지 ｜ 1 2 3 ｜ 4 5 6 7</th><th>메모</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="note">도<span class="roman">C5</span></td>
+            <td><span class="fing"><span class="c">●</span><span class="sep">｜</span><span class="c">●●●</span><span class="sep">｜</span><span class="c">●●●●</span></span></td>
+            <td>모든 구멍을 막습니다. 가장 낮은음.</td></tr>
+          <tr><td class="note">레<span class="roman">D5</span></td>
+            <td><span class="fing"><span class="c">●</span><span class="sep">｜</span><span class="c">●●●</span><span class="sep">｜</span><span class="c">●●●</span><span class="o">○</span></span></td>
+            <td>7번만 엽니다.</td></tr>
+          <tr><td class="note">미<span class="roman">E5</span></td>
+            <td><span class="fing"><span class="c">●</span><span class="sep">｜</span><span class="c">●●●</span><span class="sep">｜</span><span class="c">●●</span><span class="o">○○</span></span></td>
+            <td>6·7번을 엽니다.</td></tr>
+          <tr><td class="note">파<span class="roman">F5</span></td>
+            <td><span class="fing"><span class="c">●</span><span class="sep">｜</span><span class="c">●●●</span><span class="sep">｜</span><span class="c">●</span><span class="o">○</span><span class="c">●●</span></span> <span class="badge b-ger">G</span></td>
+            <td>바로크식 포크 운지(5번만 엶). <b>독일식:</b> ●｜●●●｜●○○○</td></tr>
+          <tr><td class="note">솔<span class="roman">G5</span></td>
+            <td><span class="fing"><span class="c">●</span><span class="sep">｜</span><span class="c">●●●</span><span class="sep">｜</span><span class="c">●</span><span class="o">○○○</span></span></td>
+            <td>오른손 4번까지만 막습니다.</td></tr>
+          <tr><td class="note">라<span class="roman">A5</span></td>
+            <td><span class="fing"><span class="c">●</span><span class="sep">｜</span><span class="c">●●</span><span class="o">○</span><span class="sep">｜</span><span class="o">○○○○</span></span></td>
+            <td>왼손 1·2번만 막습니다.</td></tr>
+          <tr><td class="note">시♭<span class="roman">B♭5</span></td>
+            <td><span class="fing"><span class="c">●</span><span class="sep">｜</span><span class="c">●</span><span class="o">○</span><span class="c">●</span><span class="sep">｜</span><span class="o">○○○○</span></span></td>
+            <td>왼손 1·3번(2번은 엶). 바장조 핵심음.</td></tr>
+          <tr><td class="note">시<span class="roman">B5</span></td>
+            <td><span class="fing"><span class="c">●</span><span class="sep">｜</span><span class="c">●</span><span class="o">○○</span><span class="sep">｜</span><span class="o">○○○○</span></span></td>
+            <td>왼손 1번만 막습니다.</td></tr>
+          <tr><td class="note">높은 도<span class="roman">C6</span></td>
+            <td><span class="fing"><span class="c">●</span><span class="sep">｜</span><span class="o">○</span><span class="c">●</span><span class="o">○</span><span class="sep">｜</span><span class="o">○○○○</span></span></td>
+            <td>엄지 막고 2번만 막음(1번은 엶).</td></tr>
+          <tr><td class="note">높은 레<span class="roman">D6</span></td>
+            <td><span class="fing"><span class="o">○</span><span class="sep">｜</span><span class="o">○</span><span class="c">●</span><span class="o">○</span><span class="sep">｜</span><span class="o">○○○○</span></span></td>
+            <td>엄지를 떼고 2번만 막습니다.</td></tr>
+          <tr><td class="note">파#<span class="roman">F#5</span></td>
+            <td><span class="fing"><span class="c">●</span><span class="sep">｜</span><span class="c">●●●</span><span class="sep">｜</span><span class="c">●</span><span class="o">○</span><span class="c">●</span><span class="o">○</span></span> <span class="badge b-ger">G</span></td>
+            <td>바로크식. 독일식은 운지가 다르므로 슬라이드 확인.</td></tr>
+          <tr><td class="note">솔#<span class="roman">G#5</span></td>
+            <td><span class="fing"><span class="c">●</span><span class="sep">｜</span><span class="c">●●●</span><span class="sep">｜</span><span class="o">○</span><span class="c">●●</span><span class="o">○</span></span></td>
+            <td>4번을 열고 5·6번을 막는 포크 운지.</td></tr>
+          <tr><td class="note">높은 미<span class="roman">E6</span></td>
+            <td><span class="fing"><span class="h">◐</span><span class="sep">｜</span><span class="c">●●●</span><span class="sep">｜</span><span class="c">●●</span><span class="o">○○</span></span></td>
+            <td><b>서밍</b>(엄지 살짝) + '미' 운지.</td></tr>
+          <tr><td class="note">높은 파<span class="roman">F6</span></td>
+            <td><span class="fing"><span class="h">◐</span><span class="sep">｜</span><span class="c">●●●</span><span class="sep">｜</span><span class="c">●</span><span class="o">○</span><span class="c">●●</span></span> <span class="badge b-ger">G</span></td>
+            <td>서밍 + '파' 포크 운지. 독일식은 다름.</td></tr>
+          <tr><td class="note">높은 솔<span class="roman">G6</span></td>
+            <td><span class="fing"><span class="h">◐</span><span class="sep">｜</span><span class="c">●●●</span><span class="sep">｜</span><span class="c">●</span><span class="o">○○○</span></span></td>
+            <td>서밍 + '솔' 운지.</td></tr>
+          <tr><td class="note">높은 도#<span class="roman">C#6</span></td>
+            <td><span class="fing"><span class="o">○</span><span class="sep">｜</span><span class="o">○</span><span class="c">●●</span><span class="sep">｜</span><span class="o">○○○○</span></span> <span class="badge b-ppt">PPT</span></td>
+            <td>고음 반음. 정확한 도해는 PPT 81·90쪽 확인.</td></tr>
+          <tr><td class="note">높은 파#<span class="roman">F#6</span></td>
+            <td><span class="fing"><span class="h">◐</span><span class="sep">｜</span><span class="c">●●●</span><span class="sep">｜</span><span class="c">●</span><span class="o">○</span><span class="c">●</span><span class="o">○</span></span> <span class="badge b-ger">G</span> <span class="badge b-ppt">PPT</span></td>
+            <td>서밍 + 반음. B/G 차이 큼 → PPT 95쪽 확인.</td></tr>
+          <tr><td class="note">높은 레#<span class="roman">D#6</span></td>
+            <td><span class="fing"><span class="o">○</span><span class="sep">｜</span><span class="o">○○</span><span class="c">●</span><span class="sep">｜</span><span class="c">●●●</span><span class="o">○</span></span> <span class="badge b-ppt">PPT</span></td>
+            <td>고음 반음. 정확한 도해는 PPT 96쪽 확인.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <b>꼭 확인하세요.</b> 위 도해는 표준 바로크식(B) 기준입니다. 리코더 머리 부분의 <b>B</b>(바로크식)·<b>G</b>(독일식) 표기를 먼저 확인하고,
+      <b>파·파#·높은 파#</b>와 고음 반음(<b>PPT</b> 표시)은 이 수업 PPT의 각 <b>'소리내기'</b> 슬라이드 도해를 최종 기준으로 삼으세요.
+      출처: <a href="https://www.yamaha.com/en/musical_instrument_guide/recorder/play/play002.html" target="_blank">Yamaha 운지표</a> ·
+      <a href="https://americanrecorder.org/docs/Fingering_Chart_for_Soprano_Recorder.pdf" target="_blank">American Recorder Society</a>
+    </div>
+  </div>
+</section>
+
+<!-- 레퍼토리 -->
+<section>
+  <div class="wrap">
+    <h2 class="sec"><span class="dot"></span>수록·연습곡</h2>
+    <p class="sec-sub">기초 연습부터 완성 과제곡까지의 흐름입니다.</p>
+    <div class="grid g2">
+      <div class="card">
+        <h3>도레미송 <span style="font-size:.8rem;color:var(--sub)">— R. Rodgers</span></h3>
+        <p class="meta">기초 운지 익히기 · 4/4 · ♩=100</p>
+        <p>'사운드 오브 뮤직'의 도레미송. 도~시 기본음을 노래로 자연스럽게 연습합니다.</p>
+      </div>
+      <div class="card">
+        <h3>언제나 몇 번이라도</h3>
+        <p class="meta">시♭ · 더블 텅잉 · 바장조 · 3/4</p>
+        <p>임시표(시♭)와 더블 텅잉을 적용하는 핵심 연주곡. 마디 분석과 반주 맞춰 연주까지 단계별로 진행합니다.</p>
+      </div>
+      <div class="card">
+        <h3>학교 가는 길 <span style="font-size:.8rem;color:var(--sub)">— 김광민 작곡 / 박경화 편곡</span></h3>
+        <p class="meta">서밍(높은음) · Allegretto · 4/4</p>
+        <p>높은 미·파·솔을 서밍으로 연주. 셋잇단음표와 다양한 화음 진행을 감상·연습합니다.</p>
+      </div>
+      <div class="card" style="border-color:var(--gold);box-shadow:0 4px 18px rgba(230,160,60,.18)">
+        <h3>🏆 아일랜드 여인 (IRLANDAISE) <span style="font-size:.8rem;color:var(--sub)">— C. Bolling</span></h3>
+        <p class="meta">과제곡 · 소프라노 리코더 2 + 피아노 · 스윙 · 3/4 · ♩=90</p>
+        <p>반음(#)과 이음줄·붙임줄이 어우러진 완성 과제곡. 위 반주 MR에 맞춰 마디를 나누어 연습하고 영상으로 제출합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="hr"></div>
+    리코더 수업 자료실 · 오션중학교 1학년 음악 &nbsp;|&nbsp; 자료 분석 자동 정리 페이지<br>
+    ※ 음원·영상이 재생되지 않으면 이 <b>index.html</b>이 음원 파일들과 같은 폴더에 있는지 확인하세요.
+  </div>
+</footer>
+
+</body>
+</html>
